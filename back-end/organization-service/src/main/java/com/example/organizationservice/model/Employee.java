@@ -1,28 +1,39 @@
 package com.example.organizationservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
 
+/**
+ * Employee class.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Employee {
+    /**
+     * Employee id.
+     */
     private Long id;
+    /**
+     * Organization id.
+     */
     private Long organizationId;
+    /**
+     * Department id.
+     */
     private Long departmentId;
+    /**
+     * Employee name.
+     */
     private String name;
+    /**
+     * Employee position.
+     */
     private String position;
+    /**
+     * Employee date of birth.
+     */
     private LocalDate dob;
-    Date createdAt;
-    private Integer age;
-
-    public Integer getAge() {
-        return Period.between(this. dob, LocalDate.now()).getYears();
-    }
 }
+

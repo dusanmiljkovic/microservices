@@ -1,13 +1,13 @@
 package com.example.employeeservice.model;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
 
+/**
+ * Employee class.
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,21 +15,30 @@ import java.util.Date;
 @Getter
 @Setter
 public class Employee {
+    /**
+     * Employee id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    /**
+     * Organization id.
+     */
     private Long organizationId;
+    /**
+     * Department id.
+     */
     private Long departmentId;
+    /**
+     * Employee name.
+     */
     private String name;
+    /**
+     * Employee position.
+     */
     private String position;
+    /**
+     * Employee date of birth.
+     */
     private LocalDate dob;
-    @CreatedDate
-    Date createdAt;
-
-    @Transient
-    private Integer age;
-
-    public Integer getAge() {
-        return Period.between(this. dob, LocalDate.now()).getYears();
-    }
 }

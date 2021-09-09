@@ -1,13 +1,14 @@
 package com.example.deparmentservice.model;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * Department class.
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,14 +16,24 @@ import java.util.List;
 @Getter
 @Setter
 public class Department {
+    /**
+     * Id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    /**
+     * Organization id.
+     */
     private Long organizationId;
+    /**
+     * Name.
+     */
     private String name;
-    @CreatedDate
-    Date createdAt;
 
+    /**
+     * List of employees.
+     */
     @Transient
     private List<Employee> employees = new ArrayList<>();
 }

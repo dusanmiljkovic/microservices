@@ -11,42 +11,77 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Department controller.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
 public class DepartmentController {
-
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
+    /**
+     * Department service.
+     */
     public final DepartmentService departmentService;
 
+    /**
+     * Employee client.
+     */
     @Autowired
     EmployeeClient employeeClient;
 
+    /**
+     * Create department.
+     * @param department Department,
+     * @return Created department.
+     */
     @PostMapping("/")
     public Department add(@RequestBody Department department) {
         LOGGER.info("Department add: {}", department);
         return departmentService.add(department);
     }
 
+    /**
+     * Get department.
+     * @param id Department id.
+     * @return Department.
+     */
     @GetMapping("/{id}")
     public Department findById(@PathVariable("id") Long id) {
         LOGGER.info("Department find: id={}", id);
         return departmentService.findById(id);
     }
 
+    /**
+     * Get all departments.
+     * @return List of departments.
+     */
     @GetMapping("/")
     public List<Department> findAll() {
         LOGGER.info("Department find");
         return departmentService.findAll();
     }
 
+    /**
+     * Update department.
+     * @param id Department id.
+     * @param department Department details.
+     * @return Updated department.
+     */
     @PutMapping("/{id}")
     public Department update(@PathVariable("id") Long id, @RequestBody Department department) {
         LOGGER.info("Update organization: id={}", id);
         return departmentService.update(id, department);
     }
 
+    /**
+     * Delete department by id.
+     * @param id Department id.
+     */
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id) {
         LOGGER.info("Employee find: id={}", id);
@@ -54,6 +89,10 @@ public class DepartmentController {
         employeeClient.deleteByDepartment(id);
     }
 
+    /**
+     * Delete departments by organization id.
+     * @param id Organization id.
+     */
     @DeleteMapping("/organization/{organizationId}")
     public void deleteByOrganizationId(@PathVariable("organizationId") Long id) {
         LOGGER.info("Employee find: id={}", id);
@@ -61,12 +100,22 @@ public class DepartmentController {
         departmentService.deleteByOrganizationId(id);
     }
 
+    /**
+     * Get departments bby organization id.
+     * @param organizationId Organization id.
+     * @return List of departments.
+     */
     @GetMapping("/organization/{organizationId}")
     public List<Department> findByOrganization(@PathVariable("organizationId") Long organizationId) {
         LOGGER.info("Department find: organizationId={}", organizationId);
         return departmentService.findByOrganization(organizationId);
     }
 
+    /**
+     * Get department with employees.
+     * @param id Department id.
+     * @return Department.
+     */
     @GetMapping("/{id}/with-employees")
     public Department findByIdWithEmployees(@PathVariable("id") Long id) {
         LOGGER.info("Department find: id={}", id);
@@ -75,6 +124,11 @@ public class DepartmentController {
         return department;
     }
 
+    /**
+     * Get departments with employees by organization id.
+     * @param organizationId Organization id.
+     * @return Departments.
+     */
     @GetMapping("/organization/{organizationId}/with-employees")
     public List<Department> findByOrganizationWithEmployees(@PathVariable("organizationId") Long organizationId) {
         LOGGER.info("Department find: organizationId={}", organizationId);

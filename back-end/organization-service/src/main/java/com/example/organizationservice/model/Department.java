@@ -1,18 +1,29 @@
 package com.example.organizationservice.model;
 
 import lombok.*;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * Department class.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Department {
     private Long id;
+    /**
+     * Organization id.
+     */
     private Long organizationId;
+    /**
+     * Name.
+     */
     private String name;
-    Date createdAt;
+    /**
+     * List of employees.
+     */
     private List<Employee> employees = new ArrayList<>();
 }
